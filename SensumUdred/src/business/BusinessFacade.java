@@ -178,6 +178,8 @@ public class BusinessFacade implements IBusiness {
             if (newCase != null) {
                 if (c.getCase() == null) {
                     cases.add(newCase);
+                    c.setCase((Case)newCase);
+                    
                 } else {
                     cases.remove(c.getCase());
                     c.setCase((Case)newCase);

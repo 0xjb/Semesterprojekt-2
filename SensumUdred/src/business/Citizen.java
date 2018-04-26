@@ -13,7 +13,8 @@ import java.io.Serializable;
  *
  * @author Bruger
  */
-public class Citizen implements ICitizen, Serializable{
+public class Citizen implements ICitizen, Serializable {
+
     private String name;
     private String id;
     private String needs;
@@ -65,22 +66,24 @@ public class Citizen implements ICitizen, Serializable{
     public void setReference(Reference reference) {
         this.reference = reference;
     }
+
     @Override
     public IInquiry getInquiry() {
         return (IInquiry) inquiry;
     }
-    
+
     @Override
-    public void createInquiry(String id, String origin, boolean informed, String description){
+    public void createInquiry(String id, String origin, boolean informed, String description) {
         this.inquiry = new Inquiry(id, origin, informed, this, description);
     }
-    
+
     @Override
-    public void setInquiry(Inquiry inquiry){
+    public void setInquiry(Inquiry inquiry) {
         this.inquiry = inquiry;
     }
-     public String toString(){
-         return this.getName();
-     }
-    
+
+    public String toString() {
+        return this.getName();
+    }
+
 }
