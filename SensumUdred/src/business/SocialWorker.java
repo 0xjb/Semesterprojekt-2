@@ -19,6 +19,8 @@ public class SocialWorker extends User implements ISocialWorker {
 
     private Set<Reference> references;
 
+    private Set<Citizen> citizens;
+
     private static final long serialVersionUID = 1L;
 
     public SocialWorker(String name, String id, String username, String password, String email) {
@@ -137,14 +139,13 @@ public class SocialWorker extends User implements ISocialWorker {
         return citizen;
     }
 
- 
     public boolean deleteCitizen(ICitizen citizen, ObservableList<ICitizen> citizens) {
         boolean citizenRemoved = false;
         if (citizens.contains(citizen)) {
-            System.out.println("brrt");
             citizenRemoved = citizens.remove(citizen);
         }
         return citizenRemoved;
     }
-
+    
+     
 }

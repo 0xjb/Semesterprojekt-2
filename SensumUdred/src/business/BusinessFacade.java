@@ -38,6 +38,13 @@ public class BusinessFacade implements IBusiness {
         return this.users = FXCollections.observableArrayList(users);
     }
 
+    @Override
+    public ObservableList<ICitizen> getCitizen() {
+        ArrayList<ICitizen> citizens = new ArrayList<>();
+        data.loadData(citizens, "citizens");
+        return this.citizens = FXCollections.observableArrayList(citizens);
+    }
+    
     public BusinessFacade() {
     }
 
@@ -128,12 +135,13 @@ public class BusinessFacade implements IBusiness {
     @Override
     public ObservableList<IInquiry> getInquiries() {
         ArrayList<ICitizen> citizens = new ArrayList<>();
+        ArrayList<IInquiry> inquiries = new ArrayList<>(); // to be filled with inquiries
         data.loadData(citizens, "citizens");
-        for (ICitizen c : citizens) {
-            inquiries.add(c.getInquiry());
-
+        for (ICitizen c : citizens) { // get all inquiries belonging to citizens
+            inquiries.add(c.getInquiry()); // put them in the inquiries list
         }
-        return inquiries = FXCollections.observableArrayList(inquiries);
+        // set observablelist to be = inquiries and then return it
+        return this.inquiries = FXCollections.observableArrayList(inquiries);
     }
 
     @Override
@@ -219,7 +227,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void deleteCitizen(ICitizen citizen) {
         String s = "Error with Citizen";
-        if (security.getActiveUser() instanceof SystemAdmin) {
+        if (security.getActiveUser() instanceof SocialWorker) {
             if (((SocialWorker) security.getActiveUser()).deleteCitizen(citizen, citizens)) {
                 security.logData("Deleted citizens " + citizen.getName());
                 data.saveData((ArrayList<ICitizen>) citizens.stream().collect(Collectors.toList()), "citizens");
@@ -229,11 +237,6 @@ public class BusinessFacade implements IBusiness {
         }
     }
 
-    @Override
-    public ObservableList<ICitizen> getCitizen() {
-        ArrayList<ICitizen> citizens = new ArrayList<>();
-        data.loadData(citizens, "citizens");
-        return this.citizens = FXCollections.observableArrayList(citizens);
-    }
+    
 
 }
