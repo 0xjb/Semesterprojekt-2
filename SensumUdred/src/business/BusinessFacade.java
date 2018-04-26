@@ -206,7 +206,7 @@ public class BusinessFacade implements IBusiness {
             citizen = ((ISocialWorker) security.getActiveUser()).createCitizen(name, id, needs);
             if (citizen != null) {
                 citizens.add(citizen);
-                data.saveData((ArrayList<ICitizen>) citizens.stream().collect(Collectors.toList()), "Citizens");
+                data.saveData((ArrayList<ICitizen>) citizens.stream().collect(Collectors.toList()), "citizens");
                 security.logData("Created Citizen" + citizen.getName());
             } else {
                 System.out.println(s);
