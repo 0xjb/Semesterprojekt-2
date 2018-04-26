@@ -205,6 +205,7 @@ public class BusinessFacade implements IBusiness {
     public void deleteCase(ICase newCase) {
         if (security.getActiveUser() instanceof SocialWorker) {
             if (((SocialWorker) security.getActiveUser()).deleteCase(newCase, cases)) {
+                
                 security.logData("Deleted case " + newCase.toString());
                 data.saveData((ArrayList<ICase>) cases.stream().collect(Collectors.toList()), "cases");
             } else {

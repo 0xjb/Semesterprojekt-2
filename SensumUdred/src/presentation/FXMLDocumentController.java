@@ -104,7 +104,6 @@ public class FXMLDocumentController implements Initializable {
     private Button editInquiryButton;
     @FXML
     private Button deleteInquiryButton;
-    @FXML
     private Label inquiryLabel;
     @FXML
     private ListView<IInquiry> inquiryListView;
@@ -116,7 +115,9 @@ public class FXMLDocumentController implements Initializable {
     private Button createCitizenButton;
     @FXML
     private Button editCitizenButton;
-
+    @FXML
+    private ListView<ICitizen> citizenListView2;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -231,7 +232,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void createInquiryAction(ActionEvent event) {
-        ab.displayInquiryCreation("Inquiry", ib, citizenListView.getSelectionModel().getSelectedItem());
+        ab.displayInquiryCreation("Inquiry", ib, citizenListView2.getSelectionModel().getSelectedItem());
+        updateInquiryList();
     }
 
     @FXML
@@ -258,6 +260,8 @@ public class FXMLDocumentController implements Initializable {
             inquiryLabel.setText("no Inquiries installed");
         } else {
             citizenListView.setItems(ib.getCitizen());
+            citizenListView2.setItems(ib.getCitizen());
+            
         }
     }
 
