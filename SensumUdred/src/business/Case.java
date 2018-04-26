@@ -35,6 +35,38 @@ public class Case implements ICase, Serializable {
         this.citizen = c;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProcess() {
+        return process;
+    }
+
+    public void setProcess(String process) {
+        this.process = process;
+    }
+
+    public ISocialWorker getSocialWorker() {
+        return socialWorker;
+    }
+
+    public void setSocialWorker(ISocialWorker socialWorker) {
+        this.socialWorker = socialWorker;
+    }
+
+    public ICitizen getCitizen() {
+        return citizen;
+    }
+
+    public void setCitizen(ICitizen citizen) {
+        this.citizen = citizen;
+    }
+    
     public String toString() {
         return this.socialWorker.toString()+" "+ID;
     }

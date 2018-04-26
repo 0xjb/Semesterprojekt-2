@@ -193,7 +193,7 @@ public class BusinessFacade implements IBusiness {
             }
 
         }
-        System.out.println("joe" + id);
+        System.out.println(c.getName() + id);
     }
 
     @Override
