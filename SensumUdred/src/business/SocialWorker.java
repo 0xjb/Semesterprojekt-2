@@ -41,6 +41,7 @@ public class SocialWorker extends User implements ISocialWorker {
     public boolean deleteCase(ICase newCase, ObservableList<ICase> cases) {
         boolean deleted = false;
         if (cases.contains(newCase)) {
+            newCase.getCitizen().setCase(null);
             deleted = cases.remove(newCase);
         }
         return deleted;
@@ -159,6 +160,7 @@ public class SocialWorker extends User implements ISocialWorker {
     public boolean deleteInquiry(IInquiry inquiry, ObservableList<IInquiry> inquiries) {
         boolean citizenRemoved = false;
         if (inquiries.contains(inquiry)) {
+            inquiry.getCitizen().setInquiry(null);
             citizenRemoved = inquiries.remove(inquiry);
         }
         return citizenRemoved;
