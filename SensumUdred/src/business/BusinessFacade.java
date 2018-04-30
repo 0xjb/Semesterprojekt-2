@@ -26,8 +26,12 @@ public class BusinessFacade implements IBusiness {
 
     @Override
     public ObservableList<ICase> getCases() {
+        ArrayList<ICitizen> citizens = new ArrayList<>();
         ArrayList<ICase> cases = new ArrayList<>();
-        data.loadData(cases, "cases");
+        data.loadData(citizens, "citizens");
+        for(ICitizen c : citizens) {
+            cases.add(c.getCase());
+        }
         return this.cases = FXCollections.observableArrayList(cases);
     }
 
@@ -204,8 +208,7 @@ public class BusinessFacade implements IBusiness {
     @Override
     public void deleteCase(ICase newCase) {
         if (security.getActiveUser() instanceof SocialWorker) {
-            if (((SocialWorker) security.getActiveUser()).deleteCase(newCase, cases)) {
-                
+            if (((SocialWorker) security.getActiveUser()).deleteCase(newCase, cases)) {              
                 security.logData("Deleted case " + newCase.toString());
                 data.saveData((ArrayList<ICase>) cases.stream().collect(Collectors.toList()), "cases");
             } else {
